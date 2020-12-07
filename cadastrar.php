@@ -19,37 +19,37 @@
 					<form id="fcadastro">
 						<label for="descprod">Descrição do produto</label>
 						<br>
-						<input type="text" name="descprod" id="descprod">
+						<input type="text" name="descprod" id="descprod" id="descprod">
 						<br>
 
 						<label for="vlrunit">Valor unitário</label>
 						<br>
-						<input type="number" name="vlrunit" id="vlrunit" min="0" step="0.01">
+						<input type="number" name="vlrunit" id="vlrunit" min="0" step="0.01" id="vlrunit">
 						<br>
 
 						<label for="barcode">Código de barras</label>
 						<br>
-						<input class="large-id" type="number" name="barcode" min="0" max="999999999999">
+						<input class="large-id" type="number" name="barcode" min="0" max="999999999999" id="barcode">
 						<br>
 
 						<label for="ref">Referência da fábrica</label>
 						<br>
-						<input type="text" name="ref">
+						<input type="text" name="ref" id="ref">
 						<br>
 
 						<label for="marca">Marca</label>
 						<br>
-						<input type="text" name="marca">
+						<input type="text" name="marca" id="marca">
 						<br>
 
 						<label for="gen">Gênero</label>
 						<br>
-						<input type="text" name="gen">
+						<input type="text" name="gen" id="gen">
 						<br>
 
 						<label for="subgen">Sub-gênero</label>
 						<br>
-						<input type="text" name="subgen">
+						<input type="text" name="subgen" id="subgen">
 						<br>
 
 						<input type="submit" value="Cadastrar" id="btncadastrar" onclick="CadastrarUsuario();">
@@ -63,7 +63,7 @@
 	
 	$result = mysqli_query($con,"select * from estoquev1.produtos");
 	if($result === FALSE) { 
-    	die(mysqli_error()); // TODO: better error handling
+    	die(mysqli_error($con)); // TODO: better error handling
 	}
 
 	$dsc = $_GET["descprod"];
@@ -78,42 +78,12 @@
 	$stmt->bind_param("sssssss",$dsc,$vlr,$bcd,$ref,$mar,$gen,$sub);
 	$stmt->execute();
 
-	$sql = 
-	   "UPDATE produtos 
-	  		SET idmarca = 1 WHERE marca = 'nokia';
-
-		UPDATE produtos 
-			SET idmarca = 2 WHERE marca = 'apple';
-
-		UPDATE produtos 
-			SET idmarca = 3 WHERE marca = 'samsung';	
-
-		UPDATE produtos
-			SET idmarca = 4 WHERE marca = 'lg';
-
-		UPDATE produtos
-			SET idmarca = 5 WHERE marca = 'asus';
-
-		UPDATE produtos
-			SET idgen = 1 WHERE gen = 'celular';
-
-		UPDATE produtos
-			SET idsubgen = 1 WHERE subgen = 'android';
-
-		UPDATE produtos
-			SET idsubgen = 2 WHERE subgen = 'ios';
-
-		UPDATE produtos
-			SET idsubgen = 3 WHERE subgen = 'windows phone';
-			";
-	if($query = mysqli_multi_query($con,$sql)){
-	}else{
-		$error = $con->errno . ' ' . $con->error;
-    	echo $error;
-	}
+	include 'entradasnovas.php';
+	include 'updateids.php';
 
 	$stmt->close();
 	mysqli_close($con);
+
 	?>
 
 <footer>

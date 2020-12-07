@@ -43,3 +43,18 @@
      };
      xmlreq.send();
  }
+
+$('#btncadastar').click(function() {
+
+    var marca = $('#marca').val();
+    var gen = $('#gen').val();
+    var subgen = $('#subgen').val();
+    alert("marca: " + marca +",gen: "+ gen +",subgen: " +subgen);
+    var phpurl = 'entradasnovas.php',
+    data = {'marca':marca,'gen':gen,'subgen':subgen};
+    $.post(phpurl, data, function (response) {
+        // Response div goes here.
+        alert("action performed successfully");
+    });
+
+});
