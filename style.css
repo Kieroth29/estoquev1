@@ -1,0 +1,40 @@
+html,
+.page{
+	background: black;
+}
+body{
+	color: green;
+	background: brown;
+	font-family: Tahoma, sans-serif;
+	font-size: 14px;
+}
+.cadastro{
+	color: green;
+	background: black;
+	font-family: Tahoma, sans-serif;
+	font-size: 14px;
+	box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.06);
+	line-height: 1.7;
+}
+#busca{
+	color: green;
+	background: black;
+	font-family: Tahoma, sans-serif;
+	font-size: 14px;
+	box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.06);
+	line-height: 1.7;
+}
+.cadastro input{
+	width: 100%
+	clear:; both;
+}
+
+input[type=button]{
+	background: darkblue;
+}
+input[type=submit]{
+	background: darkblue;
+}
+button{
+	background: darkblue;
+}
