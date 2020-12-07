@@ -22,18 +22,18 @@
 	use estoquev1
 
 	create table `produtos`(
-		cod int(6) not null pk
-		descprod varchar(50) not null 
-		barcode int(12) not null
-		ref varchar(50) not null
+		cod int(6) not null pk,
+		descprod varchar(50) not null ,
+		barcode int(12) not null,
+		ref varchar(50) not null,
 		
-		marca varchar(40) not null
-		idmarca int(3) not null
+		marca varchar(40) not null,
+		idmarca int(3) not null,
 		
-		gen varchar(20) not null
-		idgen int(3) not null
+		gen varchar(20) not null,
+		idgen int(3) not null,
 
-		subgen varchar(20) not null
+		subgen varchar(20) not null,
 		idsubgen int(3) not null
 		)
 		
