@@ -1,26 +1,32 @@
 <?php	
 
-		if (isset($_POST['marca'])) {
-			entrymarca();
-		}else{printf("post marca = %s falhou\n",$_POST['marca']);}
+		if (isset($_GET['marca'])) {
+			echo $_GET['marca'];
+			entrymarca($link);
+		}else{printf("post marca = %s falhou\n",$_GET['marca']);}
 
-		if (isset($_POST['gen'])) {
-			entrygen();
-		}else{printf("post gen = %s falhou\n",$_POST['gen']);}
+		if (isset($_GET['gen'])) {
+			echo $_GET['marca'];
+			entrygen($link);
+		}else{printf("post gen = %s falhou\n",$_GET['gen']);}
 
-		if (isset($_POST['subgen'])) {
-			entrysubgen();
-		}else{printf("post subgen = %s falhou\n",$_POST['subgen']);}
+		if (isset($_GET['subgen'])) {
+			echo $_GET['marca'];
+			entrysubgen($link);
+		}else{printf("post subgen = %s falhou\n",$_GET['subgen']);}
 
-		function entrymarca(){
+		$arquivo = fopen('updateids.txt', 'a');
+
+		function entrymarca($link){
 			$existe = false;
 
-			if ($result = mysqli_query($con, "SELECT idmarca, marca FROM produtos")) {
+			if ($result = mysqli_query($link, "SELECT idmarca, marca FROM produtos")) {
 				//percorrer array com select
 				//se marca existir var = true, se nao false
 					while($marcas = $result->fetch_assoc()) {
-						if($_POST['marca'] == $marcas["marca"]){
+						if($_GET['marca'] == $marcas["marca"]){
 		        			$existe = true;
+		        			echo "marca existe\n";
 		        		}
 		    		}
 				if ($existe == false) {//se var false executar
@@ -30,18 +36,14 @@
 
 				    $data=
 					"$sql='UPDATE produtos 
-							SET idmarca = ".$idmarcap1."WHERE marca = '".$_POST['marca']."';
-					if($query = mysqli_multi_query($con,$sql)){
+							SET idmarca = ".$idmarcap1."WHERE marca = '".$_GET['marca']."';
+					if($query = mysqli_multi_query($link,$sql)){
 					}else{
-						$error = $con->errno . ' ' . $con->error;
+						$error = $link->errno . ' ' . $link->error;
 				    	echo $error;
 					}";
-					$filecontent=file_get_contents('updateids.php');
-					/* position of "?>"*/
-					$sqlend=strpos($filecontent, '//sqlend');
-					$eof=strpos($filecontent, '?>');
-					$filecontent=substr($filecontent, $sqlend, $eof).$data."\r\n".substr($filecontent, $eof);
-					file_put_contents("file.php", $filecontent);
+					fwrite($arquivo, $data);
+					fclose($arquivo);
 
 				    mysqli_free_result($result);
 				}
@@ -50,13 +52,14 @@
 			exit;
 		}
 
-		function entrygen(){
+		function entrygen($link){
 			$existe = false;
 
-			if ($result = mysqli_query($con, "SELECT idgen, gen FROM produtos")) {
+			if ($result = mysqli_query($link, "SELECT idgen, gen FROM produtos")) {
 					while($gens = $result->fetch_assoc()) {
-						if($_POST['gen'] == $gens["gen"]){
+						if($_GET['gen'] == $gens["gen"]){
 		        			$existe = true;
+		        			echo "idgen existe\n";
 		        		}
 		    		}
 				if ($existe == false) {
@@ -66,18 +69,14 @@
 
 				    $data=
 					"$sql='UPDATE produtos 
-							SET idgen = ".$idgenp1."WHERE gen = '".$_POST['gen']."';
-					if($query = mysqli_multi_query($con,$sql)){
+							SET idgen = ".$idgenp1."WHERE gen = '".$_GET['gen']."';
+					if($query = mysqli_multi_query($link,$sql)){
 					}else{
-						$error = $con->errno . ' ' . $con->error;
+						$error = $link->errno . ' ' . $link->error;
 				    	echo $error;
 					}";
-					$filecontent=file_get_contents('updateids.php');
-					/* position of "?>"*/
-					$sqlend=strpos($filecontent, '//sqlend');
-					$eof=strpos($filecontent, '?>');
-					$filecontent=substr($filecontent, $sqlend, $eof).$data."\r\n".substr($filecontent, $eof);
-					file_put_contents("file.php", $filecontent);
+					fwrite($arquivo, $data);
+					fclose($arquivo);
 
 				    mysqli_free_result($result);
 				}
@@ -86,13 +85,14 @@
 			exit;
 		}
 
-		function entrysubgen(){
+		function entrysubgen($link){
 			$existe = false;
 
-			if ($result = mysqli_query($con, "SELECT idsubgen, subgen FROM produtos")) {
+			if ($result = mysqli_query($link, "SELECT idsubgen, subgen FROM produtos")) {
 					while($subgens = $result->fetch_assoc()) {
-						if($_POST['subgen'] == $subgens["subgen"]){
+						if($_GET['subgen'] == $subgens["subgen"]){
 		        			$existe = true;
+		        			echo "subgen existe\n";
 		        		}
 		    		}
 				if ($existe == false) {
@@ -102,18 +102,14 @@
 
 				    $data=
 					"$sql='UPDATE produtos 
-							SET idsubgen = ".$idsubgenp1."WHERE subgen = '".$_POST['subgen']."';
-					if($query = mysqli_multi_query($con,$sql)){
+							SET idsubgen = ".$idsubgenp1."WHERE subgen = '".$_GET['subgen']."';
+					if($query = mysqli_multi_query($link,$sql)){
 					}else{
-						$error = $con->errno . ' ' . $con->error;
+						$error = $link->errno . ' ' . $link->error;
 				    	echo $error;
 					}";
-					$filecontent=file_get_contents('updateids.php');
-					/* position of "?>"*/
-					$sqlend=strpos($filecontent, '//sqlend');
-					$eof=strpos($filecontent, '?>');
-					$filecontent=substr($filecontent, $sqlend, $eof).$data."\r\n".substr($filecontent, $eof);
-					file_put_contents("file.php", $filecontent);
+					fwrite($arquivo, $data);
+					fclose($arquivo);
 
 				    mysqli_free_result($result);
 				}
