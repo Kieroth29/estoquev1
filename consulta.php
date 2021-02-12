@@ -9,8 +9,8 @@ if (isset($_GET["codigo"])) {
         $codigo .= "%";
         $sql = "SELECT * FROM produtos WHERE cod like '$codigo'";
     }
-    $result = mysqli_query($con,$sql);
-    $cont = mysqli_affected_rows($con);
+    $result = mysqli_query($link,$sql);
+    $cont = mysqli_affected_rows($link);
     if ($cont > 0) {
        $tabela = "<table border='1'>
                     <thead>

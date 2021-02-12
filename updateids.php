@@ -28,9 +28,9 @@ $sql =
 		UPDATE produtos
 			SET idsubgen = 3 WHERE subgen = 'windows phone';
 			";
-	if($query = mysqli_multi_query($con,$sql)){
+	if($query = mysqli_multi_query($link,$sql)){
 	}else{
-		$error = $con->errno . ' ' . $con->error;
+		$error = $link->errno . ' ' . $link->error;
     	echo $error;
 	}
 	//sqlend

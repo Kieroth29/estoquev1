@@ -61,9 +61,9 @@
 
 	include 'connectdb.php';
 	
-	$result = mysqli_query($con,"select * from estoquev1.produtos");
+	$result = mysqli_query($link,"select * from estoquev1.produtos");
 	if($result === FALSE) { 
-    	die(mysqli_error($con)); // TODO: better error handling
+    	die(mysqli_error($link)); // TODO: better error handling
 	}
 
 	$dsc = $_GET["descprod"];
@@ -74,7 +74,7 @@
 	$gen = $_GET["gen"];
 	$sub = $_GET["subgen"];
 
-	$stmt = $con->prepare("INSERT INTO produtos (descprod, vlrunit, barcode, ref, marca, gen, subgen)VALUES (?,?,?,?,?,?,?)");
+	$stmt = $link->prepare("INSERT INTO produtos (descprod, vlrunit, barcode, ref, marca, gen, subgen)VALUES (?,?,?,?,?,?,?)");
 	$stmt->bind_param("sssssss",$dsc,$vlr,$bcd,$ref,$mar,$gen,$sub);
 	$stmt->execute();
 
@@ -82,7 +82,6 @@
 	include 'updateids.php';
 
 	$stmt->close();
-	mysqli_close($con);
 
 	?>
 
