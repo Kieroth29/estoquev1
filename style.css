@@ -2,6 +2,9 @@ html,
 .page{
 	background: black;
 }
+a{
+	background: black;
+}
 body{
 	color: green;
 	background: brown;
@@ -37,4 +40,12 @@ input[type=submit]{
 }
 button{
 	background: darkblue;
+}
+#container{
+	background: black; 
+	width: 100%
+}
+#res{
+	background: black;
+	color: green;
 }
