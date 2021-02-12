@@ -24,12 +24,12 @@
 							<input class="large-id" type="number" name="codigo" id="codigo" min="0" max="999999">
 							<br>
 
-							<label for="descprod">Descrição do produto</label>
+							<!--<label for="descprod">Descrição do produto</label>
 							<br>
 							<input type="text" name="descprod" id="descprod">
 							<br>
 
-							<!--<label for="barcode">Código de barras</label>
+							<label for="barcode">Código de barras</label>
 							<br>
 							<input class="large-id" type="number" name="barcode" min="0" max="999999999999">
 							<br>
@@ -69,7 +69,7 @@
 	include 'connectdb.php';
 	include 'consulta.php';
 	
-	$result = mysqli_query($con,"select * from estoquev1.produtos");
+	$result = mysqli_query($link,"select * from estoquev1.produtos");
 	if($result === FALSE) { 
     	die(mysqli_error()); // TODO: better error handling
 	}
