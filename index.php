@@ -13,6 +13,7 @@
 	<body>
 
 		<a href="cadastrar.php" class="button">Cadastrar</a>
+		<br>
 		<a href="buscar.php" class="button">Buscar</a>
 
 	</body>
